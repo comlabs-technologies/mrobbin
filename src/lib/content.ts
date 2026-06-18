@@ -14,6 +14,8 @@ import {
 
 export const HOST_NAME = "Prawn";
 export const GUEST_NAME = "Kay";
+export const GUEST_EMAIL = "pmatworkk@gmail.com";
+export const STAY_BRAND = "Uttam Private stays";
 export const GUEST_AVATAR = "/images/kay-profile.png";
 export const HOST_AVATAR = "/images/prawn-profile.png";
 
@@ -25,7 +27,16 @@ export const aprilMemory = {
 };
 
 export const bookingStatus = "Awaiting guest approval";
+export const bookingConfirmedStatus = "Booking confirmed";
+export const bookingConfirmedNote = "You're all set. Check your email for your booking pass.";
 export const bookingTotal = "Priceless, obviously";
+
+export const bookingConfirmedModal = {
+  title: "Booking confirmed.",
+  body: "Check your email for your booking pass.",
+  subtext: "Your stay at Uttam Private stays is all set, Kay.",
+  cta: "Lovely",
+};
 
 export interface TrustBadge {
   icon: LucideIcon;

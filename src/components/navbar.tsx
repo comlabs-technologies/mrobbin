@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GUEST_AVATAR, GUEST_NAME } from "@/lib/content";
+import { BOOKING_CONFIRMED_EVENT, isBookingConfirmed } from "@/lib/booking-storage";
 
 function AirbnbMark() {
   return (
@@ -20,10 +21,27 @@ export function Navbar() {
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 8);
   });
+
+  useEffect(() => {
+    setIsConfirmed(isBookingConfirmed());
+
+    function handleConfirmed() {
+      setIsConfirmed(true);
+    }
+
+    window.addEventListener(BOOKING_CONFIRMED_EVENT, handleConfirmed);
+    return () => window.removeEventListener(BOOKING_CONFIRMED_EVENT, handleConfirmed);
+  }, []);
+
+  const mobileLabel = isConfirmed ? `${GUEST_NAME} · confirmed` : `${GUEST_NAME} · pending`;
+  const desktopLabel = isConfirmed
+    ? `Hi ${GUEST_NAME} · booking confirmed`
+    : `Hi ${GUEST_NAME} · booking pending`;
 
   return (
     <motion.header
@@ -54,8 +72,8 @@ export function Navbar() {
             />
           </span>
           <span className="truncate text-xs font-medium tracking-tight text-hof sm:text-sm">
-            <span className="sm:hidden">{GUEST_NAME} · pending</span>
-            <span className="hidden sm:inline">Hi {GUEST_NAME} · booking pending</span>
+            <span className="sm:hidden">{mobileLabel}</span>
+            <span className="hidden sm:inline">{desktopLabel}</span>
           </span>
         </div>
       </div>
