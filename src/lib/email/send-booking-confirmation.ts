@@ -50,7 +50,7 @@ export async function sendBookingConfirmationEmail() {
   await transporter.sendMail({
     from,
     to: GUEST_EMAIL,
-    subject: `Booking confirmed at ${STAY_BRAND}`,
+    subject: `Kay, your stay at ${STAY_BRAND} is confirmed!`,
     text,
     html,
     replyTo: process.env.SMTP_REPLY_TO ?? smtpConfig.auth.user,

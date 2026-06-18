@@ -14,7 +14,7 @@ import {
 
 export const HOST_NAME = "Prawn";
 export const GUEST_NAME = "Kay";
-export const GUEST_EMAIL = "pmatworkk@gmail.com";
+export const GUEST_EMAIL = "kritikapaliwal23@gmail.com";
 export const STAY_BRAND = "Uttam Private stays";
 export const GUEST_AVATAR = "/images/kay-profile.png";
 export const HOST_AVATAR = "/images/prawn-profile.png";
